@@ -1,4 +1,4 @@
-module jsons
+module github.com/savsanirakshit/jsons
 
 go 1.21
 
