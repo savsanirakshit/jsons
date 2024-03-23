@@ -49,6 +49,30 @@ Description:
 Parameters:
 
 - jsonMap (map[string]interface{}): The JSON data from which the value is to be deleted.
-- key (string): The key path indicating the location of the value to be deleted within the JSON data. This key path can be a simple key or a JSON path containing nested 
-keys separated by dots (.) and enclosed within ${}.
+- key (string): The key path indicating the location of the value to be deleted within the JSON data. This key path can be a simple key or a JSON path containing nested keys separated by dots (.) and enclosed within ${}.
 
+Example : 
+  jsonData : {"key1" : {"subkey1" : {"subsubkey1" : "value1"} } }
+  
+	// Example usage of Get function
+	value, err := Get(jsonData, "${key1,subkey1,subsubkey1}")
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	fmt.Println("Retrieved Value:", value)
+
+	// Example usage of Set function
+	Set(jsonData, "${key1,subkey1,subsubkey2}", "value2")
+	fmt.Println("Updated JSON Data:", jsonData)
+
+	// Example usage of Delete function
+	Delete(jsonData, "${key1,subkey1,subsubkey1}")
+	fmt.Println("Deleted Value:", jsonData)
+
+
+Output : 
+
+  Retrieved Value: value1
+  Updated JSON Data: {"key1" : {"subkey1" : {"subsubkey1" : "value1", "subsubkey2" : "value2"} } }
+  Deleted Value: {"key1" : {"subkey1" : {"subsubkey2" : "value2"} } }
