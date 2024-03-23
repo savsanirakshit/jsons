@@ -1,4 +1,4 @@
-module go-workflow-executor
+module jsons
 
 go 1.21
 
