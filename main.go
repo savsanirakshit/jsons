@@ -108,3 +108,15 @@ func Delete(jsonData map[string]interface{}, key string) (map[string]interface{}
 	}
 	return jsonData, err
 }
+
+func Unmarshal(data []byte, v any) error {
+	return json.Unmarshal(data, v)
+}
+
+func Marshal(v any) ([]byte, error) {
+	return json.Marshal(v)
+}
+
+func MarshalIndent(v any, prefix, indent string) ([]byte, error) {
+	return json.MarshalIndent(v, prefix, indent)
+}
